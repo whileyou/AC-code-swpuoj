@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll n,k,a[200001],l,r;
+int main()
+{
+	cin>>n>>k;r=n-1;
+	for(int i=0;i<n;i++) scanf("%lld",&a[i]);
+	sort(a,a+n);
+	while(k&&l!=r){
+		if(l+1<n-r){
+			if(k>(a[l+1]-a[l])*(l+1)) k-=(a[l+1]-a[l])*(l+1),l++;
+			else a[l]+=k/(l+1),k=0;
+		}
+		else{
+			if(k>(a[r]-a[r-1])*(n-r)) k-=(a[r]-a[r-1])*(n-r),r--;
+			else a[r]-=k/(n-r),k=0;
+		}
+	}
+	printf("%lld",a[r]-a[l]);
+	return 0;
+} 
